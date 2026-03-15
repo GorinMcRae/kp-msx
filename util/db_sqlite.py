@@ -3,7 +3,9 @@ import json
 import config
 from util import sqlite_migrations
 
-connection = sqlite3.connect(config.SQLITE_URL, autocommit=True)
+#connection = sqlite3.connect(config.SQLITE_URL, autocommit=True)
+# Untested python 3.10 fix
+connection = sqlite3.connect(config.SQLITE_URL, isolation_level=None)
 
 connection.execute(
     '''
