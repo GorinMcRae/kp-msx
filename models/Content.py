@@ -28,7 +28,7 @@ class Content:
         self.poster = (data.get('posters') or {}).get('big')
         self.small_poster = hacks.posters_fix((data.get('posters') or {}).get('small'))
 
-        self.rating = data.get('imdb_rating') or data.get('kinopoinsk_rating')
+        self.rating = data.get('imdb_rating') or data.get('kinopoisk_rating')
         self.is_4k = data.get('quality') == 2160
 
         self.bookmarks = data.get('bookmarks')
