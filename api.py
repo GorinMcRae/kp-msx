@@ -340,8 +340,8 @@ async def menu_entries(request: Request):
 
 @app.get(ENDPOINT + '/settings/posters')
 async def settings_posters(request: Request):
-    result = await request.state.device.kp.get_single_content('13097')
-    entry = msx.poster_settings_panel(result.poster)
+    results = await request.state.device.kp.get_content()
+    entry = msx.poster_settings_panel([result.poster for result in results])
     return entry
 
 @app.post(ENDPOINT + '/settings/toggle/{setting}')

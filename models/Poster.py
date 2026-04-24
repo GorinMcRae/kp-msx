@@ -6,8 +6,8 @@ class Poster:
     SIZES = ['big', 'medium', 'small']
     PROXIES = [
         {'id': 'direct', 'title': 'Напрямую', 'template': '{url}'},
-        {'id': 'phantom', 'title': 'Phantom', 'template': 'https://api.phantom.app/image-proxy/?image={url}&width=500&height=750'},
-        {'id': 'magiceden', 'title': 'Magic Eden', 'template': 'https://img-cdn.magiceden.dev/rs:fill:500:0:0/plain/{url}'},
+        {'id': 'phantom', 'title': 'Phantom', 'template': 'https://api.phantom.app/image-proxy/?image={url}&width=100'},
+        {'id': 'magiceden', 'title': 'Magic Eden', 'template': 'https://img-cdn.magiceden.dev/rs:fill:200:0:0/plain/{url}'},
         {'id': 'wsrv', 'title': 'wsrv.nl', 'template': 'https://images.weserv.nl/?url={url}'},
     ]
 

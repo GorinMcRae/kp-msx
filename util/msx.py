@@ -520,7 +520,20 @@ def menu_entries_settings_panel(categories: 'List[Category]'):
             "items": [i.to_msx_settings_button() for i in categories if not i.ignored]
         }
 
-def poster_settings_panel(poster: 'Poster'):
+def poster_settings_panel(posters: list['Poster']):
+    from models.Poster import Poster
+    items = []
+    i = 0
+
+    for size in Poster.SIZES:
+        for proxy in Poster.PROXIES:
+            items.append({
+                    'title': f"{size} / {proxy['title']}",
+                    'image': posters[i].format(size, proxy['id']),
+                    "action": format_action(f"/msx/settings/poster/set/{size}/{proxy['id']}", module='execute')
+                })
+            i += 1
+
     return {
             "type": "list",
             "headline": 'Выберите первый рабочий постер',
@@ -530,13 +543,7 @@ def poster_settings_panel(poster: 'Poster'):
                 "layout": f"0,0,2,4",
                 'stampColor': 'msx-glass',
             },
-            "items": [
-                {
-                    'title': f"{size} / {proxy['title']}",
-                    'image': poster.format(size, proxy),
-                    "action": format_action(f"/msx/settings/poster/set/{size}/{proxy['id']}", module='execute')
-                } for size in poster.SIZES for proxy in poster.PROXIES
-            ]
+            "items": items
         }
 
 def play_action(video_url, device_settings: 'DeviceSettings' = None):
