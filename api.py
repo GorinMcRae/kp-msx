@@ -93,6 +93,42 @@ async def subtitle_editor(request: Request):
 async def subtitle_editor(request: Request):
     return FileResponse('pages/paging.js')
 
+@app.get('/plugins/html5.html')
+async def html5_plugin(request: Request):
+    return FileResponse('pages/plugins/html5.html')
+
+@app.get('/plugins/html5x.html')
+async def html5x_plugin(request: Request):
+    return FileResponse('pages/plugins/html5x.html')
+
+@app.get('/plugins/hls.html')
+async def hls_plugin(request: Request):
+    return FileResponse('pages/plugins/hls.html')
+
+@app.get('/plugins/css/common.css')
+async def plugin_common_css(request: Request):
+    return FileResponse('pages/plugins/css/common.css')
+
+@app.get('/plugins/js/html5.js')
+async def plugin_html5_js(request: Request):
+    return FileResponse('pages/plugins/js/html5.js')
+
+@app.get('/plugins/js/html5x.js')
+async def plugin_html5x_js(request: Request):
+    return FileResponse('pages/plugins/js/html5x.js')
+
+@app.get('/plugins/js/hls.js')
+async def plugin_hls_js(request: Request):
+    return FileResponse('pages/plugins/js/hls.js')
+
+@app.get('/plugins/js/lib/hls.js')
+async def plugin_hls_lib_js(request: Request):
+    return FileResponse('pages/plugins/js/lib/hls.js')
+
+@app.get('/js/tvx-plugin.min.js')
+async def tvx_plugin_js(request: Request):
+    return FileResponse('pages/js/tvx-plugin.min.js')
+
 @app.get(ENDPOINT + '/start.json')
 async def start(request: Request):
     return msx.start()
