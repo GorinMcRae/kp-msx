@@ -194,6 +194,34 @@ def content(entries, category, page, extra=None, decompress=None, device_setting
     return resp
 
 
+def add_pagination(resp, path, params, page, has_next):
+    if resp is None or resp.get('items') is None:
+        return resp
+
+    items = []
+    if page > 1:
+        prev_params = dict(params)
+        prev_params['page'] = str(page - 1)
+        items.append({
+            'type': 'default',
+            'title': 'Prev page',
+            'titleFooter': f'Page {page - 1}',
+            'action': format_action(path, params=prev_params, module='content')
+        })
+    if has_next:
+        next_params = dict(params)
+        next_params['page'] = str(page + 1)
+        items.append({
+            'type': 'default',
+            'title': 'Next page',
+            'titleFooter': f'Page {page + 1}',
+            'action': format_action(path, params=next_params, module='content')
+        })
+
+    resp['items'].extend(items)
+    return resp
+
+
 def collections(entries, device_settings: 'DeviceSettings' = None) -> dict:
     resp = {
         "type": "list",

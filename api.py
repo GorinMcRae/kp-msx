@@ -188,8 +188,18 @@ async def category(request: Request):
     genre = request.query_params.get('genre')
     sort = request.query_params.get('sort')
     result = await request.state.device.kp.get_content(category=cat, page=page, extra=extra, genre=genre, sort=sort)
-    result = msx.content(result, cat, page, extra=(extra or genre), device_settings=request.state.device.settings)
-    return result
+    entries = result
+    result = msx.content(entries, cat, page, extra=(extra or genre), device_settings=request.state.device.settings)
+    params = {'page': str(page)}
+    if cat is not None:
+        params['category'] = cat
+    if extra is not None:
+        params['extra'] = extra
+    if genre is not None:
+        params['genre'] = genre
+    if sort is not None:
+        params['sort'] = sort
+    return msx.add_pagination(result, ENDPOINT + '/category', params, page, len(entries) >= 20)
 
 
 @app.get(ENDPOINT + '/genres')
@@ -228,8 +238,9 @@ async def folder(request: Request):
     page = int(request.query_params.get('page'))
     f = request.query_params.get('folder')
     result = await request.state.device.kp.get_bookmark_folder(f, page=page)
-    result = msx.content(result, "folder", page, extra="wtf", device_settings=request.state.device.settings)
-    return result
+    entries = result
+    result = msx.content(entries, "folder", page, extra="wtf", device_settings=request.state.device.settings)
+    return msx.add_pagination(result, ENDPOINT + '/folder', {'folder': f, 'page': str(page)}, page, len(entries) >= 20)
 
 
 @app.get(ENDPOINT + '/content')
@@ -292,8 +303,9 @@ async def search(request: Request):
 async def history(request: Request):
     page = int(request.query_params.get('page'))
     result = await request.state.device.kp.get_history(page=page)
-    result = msx.content(result, "history", page, extra="wtf", device_settings=request.state.device.settings)
-    return result
+    entries = result
+    result = msx.content(entries, "history", page, extra="wtf", device_settings=request.state.device.settings)
+    return msx.add_pagination(result, ENDPOINT + '/history', {'page': str(page)}, page, len(entries) >= 20)
 
 
 @app.get(ENDPOINT + '/watching')
@@ -305,10 +317,11 @@ async def watching(request: Request):
 
 @app.get(ENDPOINT + '/collections')
 async def collections(request: Request):
-    page = request.query_params.get('page')
+    page = int(request.query_params.get('page'))
     result = await request.state.device.kp.get_collections(page=page)
-    result = msx.collections(result, device_settings=request.state.device.settings)
-    return result
+    entries = result
+    result = msx.collections(entries, device_settings=request.state.device.settings)
+    return msx.add_pagination(result, ENDPOINT + '/collections', {'page': str(page)}, page, len(entries) >= 20)
 
 
 @app.get(ENDPOINT + '/collection')
