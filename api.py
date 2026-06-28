@@ -33,6 +33,15 @@ UNAUTHORIZED = [
     '/subtitleShifter',
     '/paging.html',
     '/paging.js',
+    '/plugins/html5.html',
+    '/plugins/html5x.html',
+    '/plugins/hls.html',
+    '/plugins/css/common.css',
+    '/plugins/js/html5.js',
+    '/plugins/js/html5x.js',
+    '/plugins/js/hls.js',
+    '/plugins/js/lib/hls.js',
+    '/js/tvx-plugin.min.js',
     ENDPOINT + '/start.json',
     ENDPOINT + '/proxy'
 ]
