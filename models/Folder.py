@@ -11,6 +11,6 @@ class Folder:
         return {
             "type": "default",
             "label": self.title,
-            "action": msx.format_action('/msx/folder', params={'folder': self.id, 'page': '{PAGE}'}, interaction='/paging.html', module='content')
+            "action": msx.format_action('/msx/folder', params={'folder': self.id, 'page': '1'}, module='content')
             #"action": f"content:request:interaction:{config.MSX_HOST}/msx/folder?id={{ID}}&folder={self.id}&page={{PAGE}}@{config.MSX_HOST}/paging.html"
         }

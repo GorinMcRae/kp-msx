@@ -4,9 +4,9 @@ from util import msx
 
 class CategoryExtra:
     EXTRAS = [
-        lambda: {'title': 'Свежие', 'layout': '0,0,3,1', 'path': '/msx/category', 'params': {'extra': 'fresh', 'page': '{PAGE}'}, 'interaction': f'{config.MSX_HOST}/paging.html'},
-        lambda: {'title': 'Горячие', 'layout': '3,0,3,1', 'path': '/msx/category', 'params': {'extra': 'hot', 'page': '{PAGE}'}, 'interaction': f'{config.MSX_HOST}/paging.html'},
-        lambda: {'title': 'Популярные', 'layout': '6,0,3,1', 'path': '/msx/category', 'params': {'extra': 'popular', 'page': '{PAGE}'}, 'interaction': f'{config.MSX_HOST}/paging.html'},
+        lambda: {'title': 'Свежие', 'layout': '0,0,3,1', 'path': '/msx/category', 'params': {'extra': 'fresh', 'page': '1'}},
+        lambda: {'title': 'Горячие', 'layout': '3,0,3,1', 'path': '/msx/category', 'params': {'extra': 'hot', 'page': '1'}},
+        lambda: {'title': 'Популярные', 'layout': '6,0,3,1', 'path': '/msx/category', 'params': {'extra': 'popular', 'page': '1'}},
         lambda: {'title': 'Жанры', 'layout': '9,0,3,1', 'path': '/msx/genres'},
     ]
 
